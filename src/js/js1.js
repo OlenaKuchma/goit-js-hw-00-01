@@ -1,5 +1,5 @@
-// import css from '../css/common.css';
-import css from '../css/feedback-form.css';
+import css from '../css/common.css';
+import css2 from '../css/feedback-form.css';
 
 // const logMessage = () => {
 //   console.log('Лог при виклику колл-бек функції через 3 секунди');
@@ -88,16 +88,16 @@ import css from '../css/feedback-form.css';
 
 // -------------------TIMEOUT
 
-const PROMPT_DELAY = 1000;
-const MAX_PROPT_ATTEMPTS = 3;
-let promptCounter = 0;
-// let hasSubscribed = false;
+// const PROMPT_DELAY = 1000;
+// const MAX_PROPT_ATTEMPTS = 3;
+// let promptCounter = 0;
+// // let hasSubscribed = false;
 
-const refs = {
-  notification: document.querySelector('.js-alert'),
-};
+// const refs = {
+//   notification: document.querySelector('.js-alert'),
+// };
 
-refs.notification.addEventListener('click', hideNotification);
+// refs.notification.addEventListener('click', hideNotification);
 
 // Bootstrap...
 
@@ -123,4 +123,160 @@ refs.notification.addEventListener('click', hideNotification);
 
 // function hideNotification() {
 //   refs.notification.classList.remove('js-visible');
+// }
+
+
+// -------------- Data now
+
+// const date1 = new Date();
+// console.log('date1', date1);
+
+// setTimeout(() => {
+//   const date2 = new Date();
+//   console.log('date2', date2);
+// }, 3000);
+
+// // краще ->
+
+// const date3 = Date.now();
+// console.log('date3', date3);
+
+// setTimeout(() => {
+//   const date4 = Date.now();
+//   console.log('date4', date4);
+// }, 3000);
+
+// ----------timer
+
+const refs = {
+  clockface: document.querySelector('.js-clockface'),
+  startBtn: document.querySelector('button[data-action-start]'),
+  stopBtn: document.querySelector('button[data-action-stop]'),
+}
+
+
+
+
+// refs.clockface.addEventListener('')
+
+class Timer {
+ constructor({onTick}){
+  this.intervalId = null;
+  this.isActive = false;
+  this.onTick = onTick;
+  this.init();
+
+
+ }
+
+ init() {
+  
+  
+ }
+
+ start() {
+  if (this.isActive) {
+    return;
+  }
+  const startTime = Date.now();
+  this.isActive=true;
+
+  this.intervalId = setInterval(() => {
+    
+    const currentTime = Date.now();
+    const deltaTime = currentTime - startTime;
+    const time = this.getTimeComponents(deltaTime);
+  this.onTick(time);
+    
+    }, 1000);
+    
+}
+
+stop() {
+  clearInterval(this.intervalId);
+  this.isActive = false;
+  const time = this.getTimeComponents(0);
+  this.onTick(time);
+  
+}
+
+pad(value) { 
+    return String(value).padStart(2, '0');
+    
+  }
+  
+   getTimeComponents(time) {
+    const hours = this.pad(Math.floor((time % (1000*60*60*24))/(1000*60*60)));
+    const mins = this.pad(Math.floor((time % (1000*60*60))/(1000*60)));
+    const secs = this.pad(Math.floor((time % (1000*60))/1000));
+  
+    return {hours, mins, secs};
+    
+  }
+
+}
+
+const timer = new Timer({
+  onTick: updateClockFace,
+}); 
+
+
+// const timer = {
+//   intervalId: null,
+//   isActive: false,
+
+//   start() {
+//     if (this.isActive) {
+//       return;
+//     }
+//     const startTime = Date.now();
+//     this.isActive=true;
+
+//     this.intervalId = setInterval(() => {
+      
+//       const currentTime = Date.now();
+//       const deltaTime = currentTime - startTime;
+//       const time = getTimeComponents(deltaTime);
+      
+//       updateClockFace(time);
+//       // console.log(`${hours}:${mins}:${secs}`);
+//       // console.log(currentTime - startTime);
+      
+//     }, 1000);
+//   },
+
+//   stop() {
+//     clearInterval(this.intervalId);
+//     this.isActive = false;
+//   }
+// };
+
+
+
+function updateClockFace({hours, mins, secs}) {
+  refs.clockface.textContent = `${hours}:${mins}:${secs}`;
+  
+}
+
+refs.startBtn.addEventListener('click', () => {
+  timer.start();
+
+});
+refs.stopBtn.addEventListener('click', () => {
+  timer.stop();
+
+})
+
+// function pad(value) { 
+//   return String(value).padStart(2, '0');
+  
+// }
+
+// function getTimeComponents(time) {
+//   const hours = pad(Math.floor((time % (1000*60*60*24))/(1000*60*60)));
+//   const mins = pad(Math.floor((time % (1000*60*60))/(1000*60)));
+//   const secs = pad(Math.floor((time % (1000*60))/1000));
+
+//   return {hours, mins, secs};
+  
 // }

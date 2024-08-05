@@ -30,24 +30,55 @@ textarea {
   resize: none;
 } */
 
-.alert {
+/* .alert {
   position: fixed;
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
   padding: 10px 20px;
   background-color: #4caf50; /* Зелений колір для успішного повідомлення */
-  color: white;
+  /* color: white;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  opacity: 0; /* Невидиме за замовчуванням */
-  visibility: hidden; /* Невидиме за замовчуванням */
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
+  z-index: 1000; */
+  /* opacity: 0; /* Невидиме за замовчуванням */
+  /* visibility: hidden; Невидиме за замовчуванням */
+  /* transition: opacity 0.3s ease, visibility 0.3s ease; */ 
+
 
 /* Стилі для видимого спливаючого повідомлення */
-.alert.js-visible {
+/* .alert.js-visible {
   opacity: 1;
   visibility: visible;
+} */ 
+/* ---------------------- timer */
+
+.timer {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.clockface {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.timer-btn {
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.timer-btn:hover {
+  background-color: #0056b3;
 }
