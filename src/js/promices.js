@@ -187,39 +187,49 @@ const horses = [
     'Seabiscult',
 ];
 
-console.log(
-    '%c Заїзд почався, ставки не приймаються',
-    'color: broun; font-size: 14px;',
+const refs = {
+    startBtn: document.querySelector('.js-start-race'),
+    winnerField: document.querySelector('.js-winner'),
+    progressField: document.querySelector('.js-progress'),
+    tableBody: document.querySelector('.js-results-table > tbody'),
+};
 
-);
-
-
-
-
-
-
-const promises = horses.map(run);
-console.log(promises);
-
-
-Promise.race(promises).then(({horse, time}) => {
-    console.log(
-    `%c Переміг ${horse}, фінішував за ${time} часу`,
-    'color: green; font-size: 14px;',
-
-);
-});
-
-
-Promise.all(promises).then(() => {
-
-    console.log(
-
-        '%c Заїзд закінчився, ставки приймаються',
-        'color: blue; font-size: 14px;',
+refs.startBtn.querySelector('click', () => {
     
-    );
+    const promises = horses.map(run);
+
+    refs.progressField.textContent = 'Заїзд почався, ставки не приймаються';
+
 });
+
+
+// refs.winnerField.querySelector()
+// refs.progressField.querySelector()
+// refs.tableBody.querySelector()
+
+
+
+
+
+
+// Promise.race(promises).then(({horse, time}) => {
+//     console.log(
+//     `%c Переміг ${horse}, фінішував за ${time} часу`,
+//     'color: green; font-size: 14px;',
+
+// );
+// });
+
+
+// Promise.all(promises).then(() => {
+
+//     console.log(
+
+//         '%c Заїзд закінчився, ставки приймаються',
+//         'color: blue; font-size: 14px;',
+    
+//     );
+// });
 
 
 function run(horse) {
