@@ -1,2 +1,0 @@
-!function(){var c=function(c){return fetch("https://pokeapi.co/api/v2/pokemon/".concat(c)).then((function(c){return c.json()}))};function o(c){console.log("onFetchSuccess -> onFetchSuccess"),console.log(c)}function n(c){console.log("onFetchError -> onFetchError"),console.log(c)}c(1).then(o).catch(n),c(2).then(o).catch(n),c(3).then(o).catch(n),c(390055).then(o).catch(n)}();
-//# sourceMappingURL=index.140226b8.js.map
