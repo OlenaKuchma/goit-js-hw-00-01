@@ -148,77 +148,77 @@ import css2 from '../css/feedback-form.css';
 
 // ----------timer
 
-const refs = {
-  clockface: document.querySelector('.js-clockface'),
-  startBtn: document.querySelector('button[data-action-start]'),
-  stopBtn: document.querySelector('button[data-action-stop]'),
-}
+// const refs = {
+//   clockface: document.querySelector('.js-clockface'),
+//   startBtn: document.querySelector('button[data-action-start]'),
+//   stopBtn: document.querySelector('button[data-action-stop]'),
+// }
 
 
 
 
-// refs.clockface.addEventListener('')
+// // refs.clockface.addEventListener('')
 
-class Timer {
- constructor({onTick}){
-  this.intervalId = null;
-  this.isActive = false;
-  this.onTick = onTick;
-  this.init();
+// class Timer {
+//  constructor({onTick}){
+//   this.intervalId = null;
+//   this.isActive = false;
+//   this.onTick = onTick;
+//   this.init();
 
 
- }
+//  }
 
- init() {
+//  init() {
   
   
- }
+//  }
 
- start() {
-  if (this.isActive) {
-    return;
-  }
-  const startTime = Date.now();
-  this.isActive=true;
+//  start() {
+//   if (this.isActive) {
+//     return;
+//   }
+//   const startTime = Date.now();
+//   this.isActive=true;
 
-  this.intervalId = setInterval(() => {
+//   this.intervalId = setInterval(() => {
     
-    const currentTime = Date.now();
-    const deltaTime = currentTime - startTime;
-    const time = this.getTimeComponents(deltaTime);
-  this.onTick(time);
+//     const currentTime = Date.now();
+//     const deltaTime = currentTime - startTime;
+//     const time = this.getTimeComponents(deltaTime);
+//   this.onTick(time);
     
-    }, 1000);
+//     }, 1000);
     
-}
+// }
 
-stop() {
-  clearInterval(this.intervalId);
-  this.isActive = false;
-  const time = this.getTimeComponents(0);
-  this.onTick(time);
+// stop() {
+//   clearInterval(this.intervalId);
+//   this.isActive = false;
+//   const time = this.getTimeComponents(0);
+//   this.onTick(time);
   
-}
+// }
 
-pad(value) { 
-    return String(value).padStart(2, '0');
+// pad(value) { 
+//     return String(value).padStart(2, '0');
     
-  }
+//   }
   
-   getTimeComponents(time) {
-    const hours = this.pad(Math.floor((time % (1000*60*60*24))/(1000*60*60)));
-    const mins = this.pad(Math.floor((time % (1000*60*60))/(1000*60)));
-    const secs = this.pad(Math.floor((time % (1000*60))/1000));
+//    getTimeComponents(time) {
+//     const hours = this.pad(Math.floor((time % (1000*60*60*24))/(1000*60*60)));
+//     const mins = this.pad(Math.floor((time % (1000*60*60))/(1000*60)));
+//     const secs = this.pad(Math.floor((time % (1000*60))/1000));
   
-    return {hours, mins, secs};
+//     return {hours, mins, secs};
     
-  }
+//   }
 
-}
+// }
 
-const timer = new Timer({
-  onTick: updateClockFace,
-}); 
+// const timer = new Timer({
+//   onTick: updateClockFace,
+// }); 
 
 
 // const timer = {
