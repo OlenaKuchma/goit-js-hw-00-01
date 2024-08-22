@@ -138,31 +138,112 @@
 //     return new Promise(...)
 // }
 
-const fetchPokemonId = id => {
-    return fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then(r => r.json())};
+// const fetchPokemonId = id => {
+//     return fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then(r => r.json())};
 
-fetchPokemonId(1).then(onFetchSuccess).catch(onFetchError);
-fetchPokemonId(2).then(onFetchSuccess).catch(onFetchError);
-fetchPokemonId(3).then(onFetchSuccess).catch(onFetchError);
-fetchPokemonId(390055).then(onFetchSuccess).catch(onFetchError);
+// fetchPokemonId(1).then(onFetchSuccess).catch(onFetchError);
+// fetchPokemonId(2).then(onFetchSuccess).catch(onFetchError);
+// fetchPokemonId(3).then(onFetchSuccess).catch(onFetchError);
+// fetchPokemonId(390055).then(onFetchSuccess).catch(onFetchError);
 
 
-function onFetchSuccess(pokemon) {
-    console.log('onFetchSuccess -> onFetchSuccess');
-    console.log(pokemon);
+// function onFetchSuccess(pokemon) {
+//     console.log('onFetchSuccess -> onFetchSuccess');
+//     console.log(pokemon);
   
-} 
+// } 
 
-function onFetchError(error) {
-    console.log('onFetchError -> onFetchError');
-    console.log(error);
+// function onFetchError(error) {
+//     console.log('onFetchError -> onFetchError');
+//     console.log(error);
+// }
+
+// ----------------------
+
+// const makePromise = () => {
+//     return new Promise((resolve, reject) => {
+
+//         const passed = Math.random() > 0.5;
+//         if (passed) {
+//             resolve('привіт це resolve');
+//         }
+//          reject('привіт це reject');
+        
+                
+//     })
+// }
+
+// makePromise().then(result => console.log(result)).catch(error => console.log(error));
+
+
+// ------------------------іподром
+import '../css/common.css';
+
+const horses = [
+    'Secretariat',
+    'Eclipse',
+    'West Australian',
+    'Flying Fox',
+    'Seabiscult',
+];
+
+console.log(
+    '%c Заїзд почався, ставки не приймаються',
+    'color: broun; font-size: 14px;',
+
+);
+
+
+
+
+
+
+const promises = horses.map(run);
+console.log(promises);
+
+
+Promise.race(promises).then(({horse, time}) => {
+    console.log(
+    `%c Переміг ${horse}, фінішував за ${time} часу`,
+    'color: green; font-size: 14px;',
+
+);
+});
+
+
+Promise.all(promises).then(() => {
+
+    console.log(
+
+        '%c Заїзд закінчився, ставки приймаються',
+        'color: blue; font-size: 14px;',
+    
+    );
+});
+
+
+function run(horse) {
+    return new Promise (
+        (resolve, reject) =>
+        {           
+             const time = getRandomTime(2000, 35000);
+
+            setTimeout(() => {
+                resolve({horse, time});
+                }, time);
+
+
+        }
+    )
+    
 }
 
 
-// .then(pokemon => {
-//     console.log(pokemon);
+
+// run('horse').then(x => console.log(x));
+
+
+function getRandomTime(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
     
-// }).catch(error => {
-//     console.log('це в блоці catch');
-    
-//     console.log(error)}
+};
