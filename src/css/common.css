@@ -16,4 +16,92 @@ img {
   display: block;
   max-width: 100%;
 }
+/* покемон стилі */
 
+/* Контейнер для карток */
+.js-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+}
+
+/* Форма */
+.form-inLine {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Поле вводу форми */
+.search-form input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* Кнопка форми */
+.search-form button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Кнопка форми при наведенні */
+.search-form button:hover {
+  background-color: #0056b3;
+}
+
+/* Стилі для картки */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  font-family: Arial, sans-serif;
+}
+
+/* Зображення картки */
+.card-img-top img {
+  width: 100%;
+  height: auto;
+}
+
+/* Тіло картки */
+.card-body {
+  padding: 15px;
+}
+
+/* Заголовок картки */
+.card-title {
+  font-size: 18px;
+  margin: 0 0 10px;
+}
+
+/* Текст картки */
+.card-text {
+  margin: 5px 0;
+}
+
+/* Список навичок */
+.list-group {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+/* Елементи списку навичок */
+.list-group-item {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}

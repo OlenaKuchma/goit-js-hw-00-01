@@ -177,91 +177,94 @@
 
 
 // ------------------------іподром
-import '../css/feedback-form.css';
+// import '../css/feedback-form.css';
 
 
-const horses = [
-    'Secretariat',
-    'Eclipse',
-    'West Australian',
-    'Flying Fox',
-    'Seabiscult',
-];
+// const horses = [
+//     'Secretariat',
+//     'Eclipse',
+//     'West Australian',
+//     'Flying Fox',
+//     'Seabiscult',
+// ];
 
-const refs = {
-    startBtn: document.querySelector('.js-start-race'),
-    winnerField: document.querySelector('.js-winner'),
-    progressField: document.querySelector('.js-progress'),
-    tableBody: document.querySelector('.js-results-table > tbody'),
-};
+// const refs = {
+//     startBtn: document.querySelector('.js-start-race'),
+//     winnerField: document.querySelector('.js-winner'),
+//     progressField: document.querySelector('.js-progress'),
+//     tableBody: document.querySelector('.js-results-table > tbody'),
+// };
 
-refs.startBtn.addEventListener('click', onStart);
+// refs.startBtn.addEventListener('click', onStart);
 
-let raceCounter = 0;
-function onStart() {
-    raceCounter +=1;
-    const promises = horses.map(run);
+// let raceCounter = 0;
+// function onStart() {
+//     raceCounter +=1;
+//     const promises = horses.map(run);
 
-    updateWinnerfield('');
+//     updateWinnerfield('');
 
-    updateProgressField('Заїзд почався, ставки не приймаються');
+//     updateProgressField('Заїзд почався, ставки не приймаються');
 
-    determineWinner(promises);
+//     determineWinner(promises);
 
-    waitForAll(promises);
-};
-
-
-function determineWinner(horsesP) {
-        Promise.race(horsesP).then(({horse, time}) => {
-            updateWinnerfield(`Переміг ${horse}, фінішував за ${time} часу`);
-            updateResultsTable({horse, time, raceCounter}); 
-            });
-       };
-
-function waitForAll(horsesP) {
-    Promise.all(horsesP).then(() => {
-        updateProgressField('Заїзд закінчився, ставки приймаються');
-        });
-}
+//     waitForAll(promises);
+// };
 
 
-function run(horse) {
-    return new Promise (
-        (resolve, reject) =>
-        {           
-             const time = getRandomTime(2000, 3500);
+// function determineWinner(horsesP) {
+//         Promise.race(horsesP).then(({horse, time}) => {
+//             updateWinnerfield(`Переміг ${horse}, фінішував за ${time} часу`);
+//             updateResultsTable({horse, time, raceCounter}); 
+//             });
+//        };
 
-            setTimeout(() => {
-                resolve({horse, time});
-                }, time);
+// function waitForAll(horsesP) {
+//     Promise.all(horsesP).then(() => {
+//         updateProgressField('Заїзд закінчився, ставки приймаються');
+//         });
+// }
 
 
-        }
-    )
+// function run(horse) {
+//     return new Promise (
+//         (resolve, reject) =>
+//         {           
+//              const time = getRandomTime(2000, 3500);
+
+//             setTimeout(() => {
+//                 resolve({horse, time});
+//                 }, time);
+
+
+//         }
+//     )
     
-};
+// };
 
 
+// // run('horse').then(x => console.log(x));
 
-// run('horse').then(x => console.log(x));
 
-
-function getRandomTime(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
+// function getRandomTime(min, max) {
+//     return Math.floor(Math.random() * (max - min + 1) + min);
     
-};
+// };
 
-function updateWinnerfield(massege) {
-    refs.winnerField.textContent = massege;
-};
+// function updateWinnerfield(massege) {
+//     refs.winnerField.textContent = massege;
+// };
 
-function updateProgressField(massege) {
-    refs.progressField.textContent = massege;
-};
+// function updateProgressField(massege) {
+//     refs.progressField.textContent = massege;
+// };
 
-function updateResultsTable({horse, time, raceCounter}) {
-    const tr = `<tr><td>${raceCounter}</td><td>${horse}</td><td>${time}</td><tr>`;
-    refs.tableBody.insertAdjacentHTML('beforeend', tr);
+// function updateResultsTable({horse, time, raceCounter}) {
+//     const tr = `<tr><td>${raceCounter}</td><td>${horse}</td><td>${time}</td><tr>`;
+//     refs.tableBody.insertAdjacentHTML('beforeend', tr);
     
-}
+// }
+
+
+
+// ------------------------
