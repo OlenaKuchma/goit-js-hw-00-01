@@ -177,7 +177,8 @@
 
 
 // ------------------------іподром
-import '../css/common.css';
+import '../css/feedback-form.css';
+
 
 const horses = [
     'Secretariat',
@@ -194,49 +195,42 @@ const refs = {
     tableBody: document.querySelector('.js-results-table > tbody'),
 };
 
-refs.startBtn.querySelector('click', () => {
-    
+refs.startBtn.addEventListener('click', onStart);
+
+let raceCounter = 0;
+function onStart() {
+    raceCounter +=1;
     const promises = horses.map(run);
 
-    refs.progressField.textContent = 'Заїзд почався, ставки не приймаються';
+    updateWinnerfield('');
 
-});
+    updateProgressField('Заїзд почався, ставки не приймаються');
 
+    determineWinner(promises);
 
-// refs.winnerField.querySelector()
-// refs.progressField.querySelector()
-// refs.tableBody.querySelector()
-
-
+    waitForAll(promises);
+};
 
 
+function determineWinner(horsesP) {
+        Promise.race(horsesP).then(({horse, time}) => {
+            updateWinnerfield(`Переміг ${horse}, фінішував за ${time} часу`);
+            updateResultsTable({horse, time, raceCounter}); 
+            });
+       };
 
-
-// Promise.race(promises).then(({horse, time}) => {
-//     console.log(
-//     `%c Переміг ${horse}, фінішував за ${time} часу`,
-//     'color: green; font-size: 14px;',
-
-// );
-// });
-
-
-// Promise.all(promises).then(() => {
-
-//     console.log(
-
-//         '%c Заїзд закінчився, ставки приймаються',
-//         'color: blue; font-size: 14px;',
-    
-//     );
-// });
+function waitForAll(horsesP) {
+    Promise.all(horsesP).then(() => {
+        updateProgressField('Заїзд закінчився, ставки приймаються');
+        });
+}
 
 
 function run(horse) {
     return new Promise (
         (resolve, reject) =>
         {           
-             const time = getRandomTime(2000, 35000);
+             const time = getRandomTime(2000, 3500);
 
             setTimeout(() => {
                 resolve({horse, time});
@@ -246,7 +240,7 @@ function run(horse) {
         }
     )
     
-}
+};
 
 
 
@@ -257,3 +251,17 @@ function getRandomTime(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
     
 };
+
+function updateWinnerfield(massege) {
+    refs.winnerField.textContent = massege;
+};
+
+function updateProgressField(massege) {
+    refs.progressField.textContent = massege;
+};
+
+function updateResultsTable({horse, time, raceCounter}) {
+    const tr = `<tr><td>${raceCounter}</td><td>${horse}</td><td>${time}</td><tr>`;
+    refs.tableBody.insertAdjacentHTML('beforeend', tr);
+    
+}

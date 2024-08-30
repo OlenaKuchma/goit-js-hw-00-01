@@ -53,7 +53,7 @@ textarea {
 } */ 
 /* ---------------------- timer */
 
-.timer {
+/* .timer {
   text-align: center;
   font-family: Arial, sans-serif;
 }
@@ -81,4 +81,43 @@ textarea {
 
 .timer-btn:hover {
   background-color: #0056b3;
+} */
+
+/* ----------------------------- */
+
+.js-start-race {
+  background-color: #4CAF50; /* Зелений фон */
+  color: white; /* Білий текст */
+  padding: 10px 20px; /* Внутрішні відступи */
+  border: none; /* Без рамки */
+  border-radius: 5px; /* Закруглені кути */
+  font-size: 16px; /* Розмір тексту */
+  cursor: pointer; /* Курсор у вигляді руки */
+}
+
+/* Стилі для тексту результатів */
+.js-winner, .js-progress {
+  font-size: 18px; /* Розмір тексту */
+  margin: 10px 0; /* Зовнішні відступи */
+    height: 50px;
+    color: black;
+
+}
+
+/* Стилі для таблиці результатів */
+.js-results-table {
+  width: 100%; /* Ширина таблиці */
+  border-collapse: collapse; /* Злиття меж */
+  margin-top: 20px; /* Відступ зверху */
+}
+
+.js-results-table th, .js-results-table td {
+  border: 1px solid #ddd; /* Границя комірок */
+  padding: 8px; /* Внутрішні відступи комірок */
+  text-align: left; /* Вирівнювання тексту по лівому краю */
+}
+
+.js-results-table th {
+  background-color: #f2f2f2; /* Світло-сірий фон заголовків */
+  font-weight: bold; /* Жирний текст заголовків */
 }
