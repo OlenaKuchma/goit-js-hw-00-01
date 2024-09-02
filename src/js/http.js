@@ -1,26 +1,42 @@
 import "../css/common.css";
 import Handlebars from 'handlebars';
 import pokemonCardTpl from "../templates/pokemon-card.hbs";
-
-// Компіліруємо шаблон Handlebars
-const template = Handlebars.compile(pokemonCardTpl);
-
+console.log(typeof pokemonCardTpl); 
 const refs = {
     cardContainer: document.querySelector('.js-card-container'),
+    searchForm: document.querySelector('.js-search-form'),
 };
 
-fetch('https://pokeapi.co/api/v2/pokemon/2')
-    .then(response => response.json()) // Перетворюємо відповідь в JSON
-    .then(pokemon => {
-        console.log(pokemon); // Перевірте дані з API
+refs.searchForm.addEventListener('submit', onSearch);
 
-        // Генеруємо HTML з шаблону
-        const markup = template(pokemon);
-        console.log(markup); // Перевірте згенерований HTML
+function onSearch(e) {
+    e.preventDefault();
 
-        // Вставляємо HTML у контейнер
-        refs.cardContainer.innerHTML = markup;
-    })
-    .catch(error => {
-        console.log(error); // Перевірте помилки
+    const form = e.currentTarget;
+    const searchQuqry = form.elements.qery.value;
+
+    fetchPokemon(searchQuqry).then(renderPokemonCard).catch(error => {console.log(error).finally(() => {
+        form.reset();
     });
+    })
+
+}
+
+
+
+
+function fetchPokemon(pokemonId) {
+    return  fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+    .then(response => { return response.json();}) 
+      
+}
+
+// console.log(fetchPokemon());
+
+
+function renderPokemonCard(pokemon) {
+    const template = Handlebars.compile(pokemonCardTpl);
+    const markup = template(pokemon);  
+    refs.cardContainer.innerHTML = markup;
+}
+// console.log(renderPokemonCard());
